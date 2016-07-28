@@ -1,0 +1,19 @@
+﻿@model HRPortal.Web.Models.Data.Policy
+@{
+    ViewBag.Title = "ViewPolicy";
+}
+
+@section navbar{
+    @Html.Partial("HRNavbar")
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h2>@Model.Name</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-lg-8">
+        <p>@Model.Content</p>
+    </div>
+</div>

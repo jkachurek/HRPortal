@@ -1,0 +1,62 @@
+﻿@model HRPortal.Web.Models.ViewModels.ApplicationVM
+
+@using (Html.BeginForm("Apply", "Home", null, FormMethod.Post, new {id = "applicationForm"}))
+{
+    <div class="row">
+        <div class="col-xs-8 col-sm-5">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Application</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label>Applicant Information</label>
+                        <fieldset id="radios">
+                            <input type="radio" name="Radios" class="radio radio-inline" id="newRadio"/> New User
+                            <input type="radio" name="Radios" class="radio radio-inline" id="existingRadio"/> Existing User
+                        </fieldset>
+                        @Html.DropDownListFor(m => m.Application.Applicant, Model.UserItems, new {id = "existingItem", @class = "form-control"})
+                    </div>
+                    <div class="form-group">
+                        <label>Job</label>
+                        @Html.DropDownListFor(m => m.Application.Job, Model.JobItems, new {@class = "form-control"})
+                    </div>
+                    <div class="form-group">
+                        <label>Cover Letter</label>
+                        @Html.TextAreaFor(m => m.Application.CoverLetter, new {@class = "form-control"})
+                    </div>
+                    <div class="form-group">
+                        <label>Resume</label>
+                        @Html.TextAreaFor(m => m.Application.Resume, new {@class = "form-control"})
+                    </div>
+                    <button class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4 col-sm-3" id="newItem">
+            <div class="panel panel-info">
+                <div class="panel-heading">New Applicant Information</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <fieldset>
+                            <label>First Name</label>
+                            @Html.TextBoxFor(m => m.Application.Applicant.FirstName, new { @class = "form-control" })
+                            <label>Last Name</label>
+                            @Html.TextBoxFor(m => m.Application.Applicant.LastName, new { @class = "form-control" })
+                            <label>Street Address</label>
+                            @Html.TextBoxFor(m => m.Application.Applicant.Address.StreetAddress, new { @class = "form-control" })
+                            <label>City</label>
+                            @Html.TextBoxFor(m => m.Application.Applicant.Address.City, new { @class = "form-control" })
+                            <label>State</label>
+                            @Html.TextBoxFor(m => m.Application.Applicant.Address.State, new { @class = "form-control" })
+                            <label>Zip Code</label>
+                            @Html.TextBoxFor(m => m.Application.Applicant.Address.ZipCode, new { @class = "form-control" })
+                            <label>Phone Number</label>
+                            @Html.TextBoxFor(m => m.Application.Applicant.Phone, new { @class = "form-control" })
+                            <label>Email Address</label>
+                            @Html.TextBoxFor(m => m.Application.Applicant.Email, new { @class = "form-control" })
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

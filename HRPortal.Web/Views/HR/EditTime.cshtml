@@ -1,0 +1,47 @@
+﻿@using System.Web.Optimization
+@model HRPortal.Web.Models.Data.TimeEntry
+@{
+    ViewBag.Title = "EditTime";
+}
+
+@section styles{
+    @Styles.Render("~/bundles/uistyles")
+}
+
+<h2>Edit Time Entry</h2>
+
+@using (Html.BeginForm("EditTime", "HR", null, FormMethod.Post, new { id = "timeEditForm" }))
+{
+    <div class="row">
+        <div class="col-xs-12 col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Time Entry</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.HiddenFor(m => m.EntryId)
+                        @Html.HiddenFor(m => m.Employee.UserId)
+                        <label>Date</label>
+                        @Html.TextBoxFor(m => m.Date, new {id = "datepicker", @class = "form-control"})
+                        <label>Hours Worked</label>
+                        @Html.TextBoxFor(m => m.HoursWorked, new {@class = "form-control"})
+                    </div>
+                    <button class="btn btn-primary">Submit Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/uiscripts")
+    <script>
+            $(document)
+                .ready(function() {
+                    $('#datepicker').datepicker();
+                });
+    </script>
+    <script src="~/scripts/jquery.validate.min.js"></script>
+    <script src="~/scripts/app/jquery-validate-default.js"></script>
+    <script src="~/scripts/app/timeEditValidation.js"></script>
+}
+

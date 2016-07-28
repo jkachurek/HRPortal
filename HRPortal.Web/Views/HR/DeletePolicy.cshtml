@@ -1,0 +1,29 @@
+﻿@model HRPortal.Web.Models.Data.Policy
+@{
+    ViewBag.Title = "DeletePolicy";
+}
+
+@section navbar{
+    @Html.Partial("HRNavbar")
+}
+
+<h2>Delete Policy</h2>
+
+
+<h4>Are you sure you would like to delete this policy?</h4>
+@using (Html.BeginForm(@*"DeletePolicy", "HR", FormMethod.Post*@))
+{
+    @Html.HiddenFor(m => m.PolicyId)
+    <button class="btn btn-danger">Delete</button>
+    @Html.ActionLink("Cancel","ManagePolicies","HR", new {@class = "btn btn-info"})
+}
+<div class="row">
+    <div class="col-xs-12">
+        <h2>@Model.Name</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-lg-8">
+        <p>@Model.Content</p>
+    </div>
+</div>

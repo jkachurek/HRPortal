@@ -1,0 +1,38 @@
+﻿@model HRPortal.Web.Models.Data.TimeEntry
+@{
+    ViewBag.Title = "DeleteTime";
+}
+<br/>
+@using (Html.BeginForm("DeleteTime", "HR", null, FormMethod.Post, new { id = "timeDeleteForm" }))
+{
+    <div class="row">
+        <div class="col-xs-12 col-sm-4">
+            <div class="panel panel-danger">
+                <div class="panel-heading">Delete Time Entry</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.HiddenFor(m => m.EntryId)
+                        @Html.HiddenFor(m => m.Employee.UserId)
+                        <p>Are you sure you would like to delete the following time entry?</p>
+                        <table>
+                            <tr>
+                                <td><b>Employee:</b></td>
+                                <td>@Model.Employee.FirstName @Model.Employee.LastName</td>
+                            </tr>
+                            <tr>
+                                <td><b>Date:</b></td>
+                                <td>@Model.Date.ToShortDateString()</td>
+                            </tr>
+                            <tr>
+                                <td><b>Hours Worked:</b></td>
+                                <td>@Model.HoursWorked</td>
+                            </tr>
+                        </table>
+                    </div>
+                    @Html.ActionLink("Cancel", "ViewTimesheet", "HR", new {@class="btn btn-primary"})
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

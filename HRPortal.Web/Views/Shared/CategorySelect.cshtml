@@ -1,0 +1,8 @@
+﻿@model HRPortal.Web.Models.ViewModels.PoliciesVM
+    
+<h4>Select a category to view its policies</h4>
+@using (Html.BeginForm("ViewPolicies", "HR", FormMethod.Get))
+{
+    @Html.DropDownListFor(m => m.SelectedCategoryId, Model.CategoryItems, "Choose one", new { @class = "form-control" })
+    <button class="btn btn-primary">Submit</button>
+}

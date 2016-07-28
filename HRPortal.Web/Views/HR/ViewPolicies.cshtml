@@ -1,0 +1,50 @@
+﻿@using HRPortal.Web.Models.Repositories
+@model HRPortal.Web.Models.ViewModels.PoliciesVM
+@{
+    ViewBag.Title = "ViewPolicies";
+}
+
+@section navbar{
+    @Html.Partial("HRNavbar")
+}
+
+<h2>View Policies</h2>
+
+<h4>Select a category to view its policies</h4>
+<div class="row">
+    @using (Html.BeginForm("ViewPolicies", "HR", FormMethod.Get))
+    {
+        @Html.DropDownListFor(m => m.SelectedCategoryId, Model.CategoryItems, new { @class = "form-control" })
+        <button class="btn btn-primary">Submit</button>
+    }
+</div>
+<br/>
+
+@if (Model.Policies != null)
+{
+    <div class="row">
+        <div class="col-xs-12 col-sm-4">
+            <div class="panel panel-info">
+                <div class="panel-heading">@CategoryRepository.Get(Model.SelectedCategoryId).Name Policies</div>
+                <div class="panel-body">
+                    <div class="row">
+
+                        <table class="table table-hover table-striped">
+                            @foreach (var policy in Model.Policies)
+                            {
+                                <tr>
+                                    <td>
+                                        <a class="text-info" href="@Url.Action("ViewPolicy", "HR", new {id = policy.PolicyId})">@policy.Name</a>
+                                    </td>
+                                    <td><a href="@Url.Action("DeletePolicy", "HR", new {id = policy.PolicyId})" class="btn btn-danger">Delete</a></td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

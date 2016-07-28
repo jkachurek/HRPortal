@@ -1,0 +1,52 @@
+﻿@using System.Web.Optimization
+@model HRPortal.Web.Models.ViewModels.TimeEntryVM
+@{
+    ViewBag.Title = "SubmitTime";
+}
+
+@section navbar{
+    @Html.Partial("HRNavbar")
+}
+
+@section styles{
+    @Styles.Render("~/bundles/uistyles")
+}
+
+<h2>Submit Time</h2>
+
+@using (Html.BeginForm("SubmitTime", "HR", null, FormMethod.Post, new {id = "timeEntryForm"}))
+{
+    <div class="row">
+        <div class="col-xs-12 col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">New Time Entry</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label>Employee</label>
+                        @Html.DropDownListFor(m => m.TimeEntry.Employee.UserId, Model.EmployeeItems, new {@class = "form-control"})
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        @Html.TextBoxFor(m => m.TimeEntry.Date, new {id = "datepicker", @class = "form-control"})
+                        <label>Hours Worked</label>
+                        @Html.TextBoxFor(m => m.TimeEntry.HoursWorked, new {@class = "form-control"})
+                    </div>
+                    <button class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/uiscripts")
+    <script>
+            $(document)
+                .ready(function() {
+                    $('#datepicker').datepicker();
+                });
+    </script>
+    <script src="~/scripts/jquery.validate.min.js"></script>
+    <script src="~/scripts/app/jquery-validate-default.js"></script>
+    <script src="~/scripts/app/timeEntryValidation.js"></script>
+}

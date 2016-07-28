@@ -1,0 +1,14 @@
+﻿@model HRPortal.Web.Models.ViewModels.ApplicationVM
+@{
+    ViewBag.Title = "ApplyDirect";
+}
+
+<h2>Apply</h2>
+@Html.Partial("ApplicationFields")
+
+@section scripts{
+    <script src="~/scripts/app/NewOrExisting.js"></script>
+    <script src="~/scripts/jquery.validate.min.js"></script>
+    <script src="~/scripts/app/jquery-validate-default.js"></script>
+    <script src="~/scripts/app/applicationValidation.js"></script>
+}

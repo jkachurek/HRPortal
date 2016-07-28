@@ -1,0 +1,20 @@
+﻿<li>
+    @Html.ActionLink("Apply", "Apply", "Home")
+</li>
+
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Jobs<span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li>@Html.ActionLink("View Jobs", "ViewJobs", "Home")</li>
+        <li>@Html.ActionLink("Apply for Jobs", "Apply", "Home")</li>
+        <li>@Html.ActionLink("Application Status", "ViewApplication", "Home")</li>
+    </ul>
+</li>
+
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Policies<span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li>@Html.ActionLink("View Policies", "Policies", "Home")</li>
+    </ul>
+</li>
+

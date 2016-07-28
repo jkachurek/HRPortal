@@ -1,0 +1,48 @@
+﻿@using System.Web.Optimization
+@model HRPortal.Web.Models.ViewModels.PolicyVM
+@{
+    ViewBag.Title = "AddPolicy";
+}
+
+@section navbar{
+    @Html.Partial("HRNavbar")
+}
+<h2>Add Policy</h2>
+
+@using (Html.BeginForm("AddPolicy", "HR", null, FormMethod.Post, new {id="policyForm"}))
+{
+    <div class="row">
+        <div class="col-xs-12 col-sm-8">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label>Policy Name</label>
+                        @Html.TextBoxFor(m => m.Policy.Name, new { @class = "form-control", autofocus = true})
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        @*Used to control jQuery for displaying fields below*@
+                        <fieldset id="radios">
+                            <input type="radio" name="Radios" class="radio radio-inline" id="newRadio"/> New Category
+                            <input type="radio" name="Radios" class="radio radio-inline" id="existingRadio"/> Existing Category
+                        </fieldset> @*TODO: Continues to display invalid input message if you change radio buttons*@
+                        @Html.TextBoxFor(m => m.Policy.Category.Name, new { id="newItem", @class = "form-control" })
+                        @Html.DropDownListFor(m => m.Policy.Category.CategoryId, Model.CategoryItems, new { id="existingItem", @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>Policy Information</label>
+                        @Html.TextAreaFor(m => m.Policy.Content, new {@class = "form-control"})
+                    </div>
+                    <button class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts{
+    <script src="~/scripts/jquery.validate.min.js"></script>
+    <script src="~/scripts/app/jquery-validate-default.js"></script>
+    <script src="~/scripts/app/NewOrExisting.js"></script>
+    <script src="~/scripts/app/policyValidation.js"></script>
+}
